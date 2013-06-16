@@ -38,14 +38,14 @@ public class CounterThread extends Thread {
     }
 
     public static void join(CounterThread currentThread) {
-        counters.add(currentThread);
         for (CounterThread ct : counters) {
             long tfc = ct.counter;
-            if(!ct.isAlive()) {
+            if(ct.getState() == State.TERMINATED) {
                 counters.remove(ct);
                 sumDeadThreads.addAndGet(tfc);
             }
         }
+        counters.add(currentThread);
     }
     public static int getProbe(){
         return UnsafeAccess.UNSAFE.getInt(Thread.currentThread(), PROBE_OFFSET);
