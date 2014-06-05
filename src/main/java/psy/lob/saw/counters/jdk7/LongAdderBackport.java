@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 1.8
  */
 @SuppressWarnings("all")
-public class LongAdder extends Striped64 implements Serializable {
+public class LongAdderBackport extends Striped64 implements Serializable {
     private static final long serialVersionUID = 7249069246863182397L;
 
     /**
@@ -45,7 +45,7 @@ public class LongAdder extends Striped64 implements Serializable {
     /**
      * Creates a new adder with initial sum of zero.
      */
-    public LongAdder() {
+    public LongAdderBackport() {
     }
 
     /**

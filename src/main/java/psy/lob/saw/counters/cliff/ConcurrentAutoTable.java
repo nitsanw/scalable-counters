@@ -27,6 +27,7 @@ import sun.misc.Unsafe;
  */
 
 
+@SuppressWarnings("serial")
 public class ConcurrentAutoTable implements Serializable {
 
   // --- public interface ---

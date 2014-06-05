@@ -1,28 +1,30 @@
-package psy.lob.saw.counters.benchmarks1;
+package psy.lob.saw.counters;
 
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
 import org.openjdk.jmh.annotations.Group;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.Threads;
-
-import psy.lob.saw.counters.cliff.ConcurrentAutoTable;
-import psy.lob.saw.counters.jdk8.LongAdder;
 
 @State(Scope.Group)
-public class CATCounterBenchmark {
-    private ConcurrentAutoTable counter;
+public class CounterBenchmark {
+    private Counter counter;
+    @Param(value={"Atomic",
+        "ConcAutoTable",
+        "LongAdder7",
+        "LongAdder8",
+        "ThreadLocal"})
+    String counterName;
     @Setup
-    public void up() {
-        counter = new ConcurrentAutoTable();
+    public void buildMeCounterHearty() {
+        counter = CounterFactory.build(counterName);
     }
 
     @GenerateMicroBenchmark
     @Group("rw")
-    @Threads(1)
     public void inc() {
-        counter.increment();
+        counter.inc();
     }
 
     @GenerateMicroBenchmark

@@ -1,11 +1,11 @@
-package psy.lob.saw.counters;
+package psy.lob.saw.counters.mine;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 import psy.lob.saw.util.UnsafeAccess;
 
-public class ThreadLocalCounter {
+public class ThreadLocalAdder {
     private final AtomicLong deadThreadSum = new AtomicLong();
     static class PaddedLong1{
         long p1,p2,p3,p4,p6,p7;
@@ -34,7 +34,7 @@ public class ThreadLocalCounter {
     static class PaddedLong3 extends PaddedLong2{
         long p9,p10,p11,p12,p13,p14;
     }
-    static class ThreadAtomicLong extends PaddedLong3{
+    static final class ThreadAtomicLong extends PaddedLong3{
         final Thread t = Thread.currentThread();
     }
     private final CopyOnWriteArrayList<ThreadAtomicLong> counters = new CopyOnWriteArrayList<ThreadAtomicLong>();
