@@ -11,7 +11,7 @@ import psy.lob.saw.counters.jdk7.LongAdderBackport;
 import psy.lob.saw.counters.mine.ThreadLocalAdder;
 
 public class CounterFactory {
-    enum CounterType {
+    public enum CounterType {
         Atomic,
         ConcAutoTable,
         LongAdder7,
